@@ -28,4 +28,35 @@ class PostController extends Controller
             ->paginate(8);
         return view('posts', compact('posts'));
     }
+
+    //Form cập nhật
+    public function edit($id)
+    {
+        $post = DB::table('posts')->find($id);
+
+        return view('edit', compact('post'));
+    }
+    //Update
+    public function update($id)
+    {
+        $post = DB::table('posts')->where('id', $id);
+        if ($post) {
+            //cập nhật
+            $post->update([
+                'title' => 'Update title',
+                'description' => 'Update mô tả',
+                'view' => 1000
+            ]);
+        }
+    }
+
+    //Delete
+    public function destroy($id)
+    {
+        $post = DB::table('posts')->find($id);
+
+        DB::table('posts')->delete($id);
+
+        return redirect()->route('list-post', $post->category_id);
+    }
 }

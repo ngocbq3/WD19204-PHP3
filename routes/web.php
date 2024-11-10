@@ -20,6 +20,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [PostController::class, 'show'])->name('detail');
 Route::get('/category/{id}', [PostController::class, 'list'])->name('list-post');
 
+//Update
+Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('edit');
+Route::put('/posts/edit/{id}', [PostController::class, 'update'])->name('update');
+//Delete
+Route::delete('/posts/delete/{id}', [PostController::class, 'destroy'])->name('destroy');
+
+
+
+
+
 Route::get('/about', function () {
     return view('about');
 });
