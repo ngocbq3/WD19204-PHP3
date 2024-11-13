@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,8 @@ Route::put('/posts/edit/{id}', [PostController::class, 'update'])->name('update'
 Route::delete('/posts/delete/{id}', [PostController::class, 'destroy'])->name('destroy');
 
 
-
+//Test Eloquent
+Route::get('/test', [AdminPostController::class, 'test']);
 
 
 Route::get('/about', function () {
