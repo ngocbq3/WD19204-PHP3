@@ -30,7 +30,14 @@ Route::delete('/posts/delete/{id}', [PostController::class, 'destroy'])->name('d
 
 //Test Eloquent
 Route::get('/test', [AdminPostController::class, 'test']);
-
+//CRUD
+Route::prefix('admin/posts')->group(function () {
+    Route::get('/', [AdminPostController::class, 'index'])->name('posts.index');
+    Route::get('/create', [AdminPostController::class, 'create'])->name('posts.create');
+    Route::post('create', [AdminPostController::class, 'store'])->name('posts.store');
+    Route::get('/edit/{id}', [AdminPostController::class, 'edit'])->name('posts.edit');
+    Route::put('edit/{id}', [AdminPostController::class, 'update'])->name('posts.update');
+});
 
 Route::get('/about', function () {
     return view('about');

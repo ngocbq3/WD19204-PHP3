@@ -41,4 +41,25 @@ class PostController extends Controller
 
         return $cate->name;
     }
+
+    public function index()
+    {
+        $posts = Post::query()->paginate(10);
+        return view('admin.posts.index', compact('posts'));
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->except('image');
+        Post::query()->create($data);
+        return redirect()
+            ->route('posts.index')
+            ->with('message', 'Thêm dữ liệu thành công');
+    }
 }
