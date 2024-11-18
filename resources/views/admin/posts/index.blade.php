@@ -3,6 +3,11 @@
 @section('title', 'Danh sách sản phẩm')
 
 @section('content')
+    @session('message')
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endsession
     <div>
         <table class="table">
             <thead>
