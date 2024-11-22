@@ -20,6 +20,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">
                         <a href="{{ route('posts.create') }}" class="btn btn-primary">Create</a>
+                        <a href="{{ route('posts.trash') }}" class="btn btn-primary">Trash</a>
                     </th>
                 </tr>
             </thead>
@@ -35,7 +36,16 @@
                         <td>{{ $post->view }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            Edit | Delete
+                            <div>
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

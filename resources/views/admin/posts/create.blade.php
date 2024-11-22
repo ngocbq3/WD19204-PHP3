@@ -8,7 +8,10 @@
             @csrf
             <div class="mb-3">
                 <label for="">Title</label>
-                <input type="text" name="title" class="form-control">
+                <input type="text" name="title" value="{{ old('title') }}" class="form-control">
+                @error('title')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="">Category Name</label>
@@ -23,10 +26,16 @@
             <div class="mb-3">
                 <label for="">Image</label>
                 <input type="file" name="image" class="form-control">
+                @error('image')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="">View</label>
-                <input type="number" name="view" class="form-control">
+                <input type="number" name="view" value="{{ old('view') }}" class="form-control">
+                @error('view')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="">Description</label>

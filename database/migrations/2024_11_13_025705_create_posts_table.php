@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description', 255);
             $table->text('content');
             $table->integer('view')->default(0);
+            $table->softDeletes();
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
